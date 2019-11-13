@@ -7,9 +7,7 @@ namespace MultiFaceRec
 {
     static class Program
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        /// Punto de entrada principal para a aplicação.
         [STAThread]
         static void Main()
         {

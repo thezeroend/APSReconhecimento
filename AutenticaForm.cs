@@ -34,12 +34,12 @@ namespace MultiFaceRec
         public AutenticaForm()
         {
             InitializeComponent();
-            //Load haarcascades for face detection
+            //Carrega haarcascades para detecção
             face = new HaarCascade("haarcascade_frontalface_default.xml");
             //eye = new HaarCascade("haarcascade_eye.xml");
             try
             {
-                //Load of previus trainned faces and labels for each image
+                //Carrega as imagens treinadas antes
                 string Labelsinfo = File.ReadAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt");
                 string[] Labels = Labelsinfo.Split('%');
                 NumLabels = Convert.ToInt16(Labels[0]);
@@ -69,10 +69,10 @@ namespace MultiFaceRec
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Initialize the capture device
+            //Inicializa a camera
             grabber = new Capture();
             grabber.QueryFrame();
-            //Initialize the FrameGraber event
+            //Inicializa o frame
             Application.Idle += new EventHandler(FrameGrabber);
             button1.Enabled = false;
         }
@@ -84,10 +84,10 @@ namespace MultiFaceRec
             NamePersons.Add("");
 
 
-            //Get the current frame form capture device
+            //Pega o frame para captura
             currentFrame = grabber.QueryFrame().Resize(320, 240, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
-            //Convert it to Grayscale
+            //Converte em Grayscale
             gray = currentFrame.Convert<Gray, Byte>();
 
             //Face Detector
@@ -98,12 +98,12 @@ namespace MultiFaceRec
           Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING,
           new Size(20, 20));
 
-            //Action for each element detected
+            //Ação para cada elemnto detectado
             foreach (MCvAvgComp f in facesDetected[0])
             {
                 t = t + 1;
                 result = currentFrame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                //draw the face detected in the 0th (gray) channel with blue color
+                //Desenha o quadrado na cara
                 currentFrame.Draw(f.rect, new Bgr(Color.Red), 2);
 
 
@@ -121,7 +121,7 @@ namespace MultiFaceRec
 
                     name = recognizer.Recognize(result);
 
-                    //Draw the label for each face detected and recognized
+                    //Escreve o nome para cada face
                     currentFrame.Draw(name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
 
                 }
@@ -130,7 +130,7 @@ namespace MultiFaceRec
                 NamePersons.Add("");
 
 
-                //Set the number of faces detected on the scene
+                //Seta o numero de faces detectadas
                 label3.Text = facesDetected[0].Length.ToString();
 
                 /*
@@ -170,7 +170,7 @@ namespace MultiFaceRec
             }
             t = 0;
 
-            //Names concatenation of persons recognized
+            //Concatena o nome das pessoas
             for (int nnn = 0; nnn < facesDetected[0].Length; nnn++)
             {
                 names = names + NamePersons[nnn];

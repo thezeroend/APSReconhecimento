@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Registros>
+  <Registro>
+    <nivel>1</nivel>
+    <proprietario>Teste nivel 1</proprietario>
+    <logradouro>Teste nivel 1</logradouro>
+  </Registro>
+  <Registro>
+    <nivel>2</nivel>
+    <proprietario>Teste nivel 2</proprietario>
+    <logradouro>Teste nivel 2</logradouro>
+
+  </Registro>
+  <Registro>
+    <nivel>3</nivel>
+    <proprietario>Teste nivel 3</proprietario>
+    <logradouro>Teste nivel 3</logradouro>
+  </Registro>
+</Registros>

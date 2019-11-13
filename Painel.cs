@@ -63,6 +63,8 @@ namespace MultiFaceRec
         { 
             this.Hide();
             Registros registros = new Registros();
+            registros.nvlAcessolbl.Text = label3.Text;
+            registros.nomelbl.Text = label4.Text;
             registros.Closed += (s, args) => this.Close();
             registros.Show();
         }
